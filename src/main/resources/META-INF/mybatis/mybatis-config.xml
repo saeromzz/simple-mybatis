@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="Employee" type="com.sample.demo1.vo.Employee"/>
+		<!-- 
+		<typeAlias alias="Department" type="com.sample.demo1.vo.Department"/>
+		<typeAlias alias="Job" type="com.sample.demo1.vo.Job"/>
+		<typeAlias alias="Location" type="com.sample.demo1.vo.Location"/>
+		<typeAlias alias="Country" type="com.sample.demo1.vo.Country"/>
+		-->
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="META-INF/mybatis/mappers/employees.xml" />
+		<!-- 
+		<mapper resource="META-INF/mybatis/mappers/departments.xml" />
+		<mapper resource="META-INF/mybatis/mappers/locations.xml" />
+		<mapper resource="META-INF/mybatis/mappers/jobs.xml" />
+		<mapper resource="META-INF/mybatis/mappers/job_history.xml" />
+		-->
+	</mappers>
+	
+</configuration>

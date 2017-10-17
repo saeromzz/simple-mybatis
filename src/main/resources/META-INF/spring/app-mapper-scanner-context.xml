@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="zxcv1234" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds" />
+		<property name="configLocation" value="classpath:/META-INF/mybatis/mybatis-config.xml" />
+	</bean>
+	
+	<!-- MapperScannerConfigurer: mappers interface를 모두 찾아 찾아진 mappers interface구현객체를 전부 빈으로 등록하여 package안에 넣어 사용한다-->
+	<!-- bean의 '이름'을 알려주기 때문에 ref가 아닌 value를 쓴다 -->
+	<!-- 따라서 일일이 DepartmentMappers, JobsMappers 등을 써 줄 필요가 없다(demo1-context.xml참조) -->
+	
+	<!--  
+		MapperScannerConfigurer은
+		지정된 패키지에서 정의된 모든 Mapper 인터페이스를 읽어서 Mapper 인터페이스를 구현한 Mapper 인스턴스(구현객체)를 생성하고
+		생성된 구현객체를 전부 스프링의 빈으로 등록한다
+	-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.sample.demo1.mappers" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+</beans>
